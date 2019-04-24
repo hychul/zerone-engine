@@ -1,1 +1,12 @@
-/build
+# Gradle
+.grale
+build/
+
+# Java
+*.class
+
+# IDE
+*.iml
+
+# Mac
+.DS_Store
