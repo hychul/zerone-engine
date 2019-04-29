@@ -37,12 +37,12 @@ public final class Quaternion {
     }
 
     public void set(Vector3 euler) {
-        float c1 = Mathf.cos(euler.y * TO_RADIANS / 2);
-        float s1 = Mathf.sin(euler.y * TO_RADIANS / 2);
-        float c2 = Mathf.cos(euler.z * TO_RADIANS / 2);
-        float s2 = Mathf.sin(euler.z * TO_RADIANS / 2);
-        float c3 = Mathf.cos(euler.x * TO_RADIANS / 2);
-        float s3 = Mathf.sin(euler.x * TO_RADIANS / 2);
+        float c1 = Mathf.cos(euler.getY() * TO_RADIANS / 2);
+        float s1 = Mathf.sin(euler.getY() * TO_RADIANS / 2);
+        float c2 = Mathf.cos(euler.getZ() * TO_RADIANS / 2);
+        float s2 = Mathf.sin(euler.getZ() * TO_RADIANS / 2);
+        float c3 = Mathf.cos(euler.getX() * TO_RADIANS / 2);
+        float s3 = Mathf.sin(euler.getX() * TO_RADIANS / 2);
 
         float c1c2 = c1 * c2;
         float s1s2 = s1 * s2;
@@ -58,9 +58,9 @@ public final class Quaternion {
         float s = Mathf.sin(angleRad / 2);
 
         this.w = Mathf.cos(angleRad / 2);
-        this.x = axis.x * s;
-        this.y = axis.y * s;
-        this.z = axis.z * s;
+        this.x = axis.getX() * s;
+        this.y = axis.getY() * s;
+        this.z = axis.getZ() * s;
     }
 
     public void set(float x, float y, float z, float w) {
@@ -255,13 +255,13 @@ public final class Quaternion {
         float s = Mathf.sqrt(1 - q.w * q.w); // assuming quaternion normalised then w is less than 1, so term always positive.
         if (s < 0.001) { // test to avoid divide by zero, s is always positive due to sqrt
             // if s close to zero then direction of axis not important
-            axis.x = q.x; // if it is important that axis is normalised then replace with x=1; y=z=0;
-            axis.y = q.y;
-            axis.z = q.z;
+            axis.setX(q.x); // if it is important that axis is normalised then replace with x=1; y=z=0;
+            axis.setY(q.y);
+            axis.setZ(q.z);
         } else {
-            axis.x = q.x / s; // normalise axis
-            axis.y = q.y / s;
-            axis.z = q.z / s;
+            axis.setX(q.x / s); // normalise axis
+            axis.setY(q.y / s);
+            axis.setZ(q.z / s);
         }
 
         return angle;
