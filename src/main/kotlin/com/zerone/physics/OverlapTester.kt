@@ -1,4 +1,9 @@
-package com.zerone.math
+package com.zerone.physics
+
+import com.zerone.math.Circle
+import com.zerone.math.Sphere
+import com.zerone.math.Vector2
+import com.zerone.math.Vector3
 
 class OverlapTester {
     companion object {
