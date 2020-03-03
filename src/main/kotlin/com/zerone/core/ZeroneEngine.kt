@@ -7,20 +7,19 @@ import java.util.concurrent.TimeUnit
 
 class ZeroneEngine {
 
-    private val threadPoolExecutor: ThreadPoolExecutor
+    private val threadPoolExecutor = ThreadPoolExecutor(
+            1,
+            1,
+            0,
+            TimeUnit.MILLISECONDS,
+            SynchronousQueue(),
+            ThreadPoolExecutor.DiscardPolicy()
+    )
     private val simulatorTask: SimulatorTask
 
     var lock: Object
 
     init {
-        threadPoolExecutor = ThreadPoolExecutor(
-                1,
-                1,
-                0,
-                TimeUnit.MILLISECONDS,
-                SynchronousQueue(),
-                ThreadPoolExecutor.DiscardPolicy()
-        )
         simulatorTask = SimulatorTask(60)
 
         lock = Object()
